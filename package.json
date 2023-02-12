@@ -1,0 +1,13 @@
+{
+  "name": "hackernews-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/bin/index.js",
+  "bin": {
+    "hn": "/bin/index.js"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
