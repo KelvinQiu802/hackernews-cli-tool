@@ -4,6 +4,8 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { getTopN, storyCategorys } from './hn.js';
 import { printNews, clear } from './printer.js';
+import inquirer from 'inquirer';
+import open from 'open';
 
 const argv = yargs(hideBin(process.argv))
   .option('category', {
@@ -29,7 +31,32 @@ async function getNews() {
   return await getTopN(argv.number, storyCategorys[argv.category]);
 }
 
+function indexValidator(index) {
+  if (index >= 0 && index <= argv.number - 1) {
+    return true;
+  } else {
+    throw new Error(`The index should between 0~${argv.number - 1}`);
+  }
+}
+
 clear();
-getNews().then((data) => {
-  data.forEach((data) => printNews(data));
-});
+
+(async () => {
+  const news = await getNews();
+
+  news.forEach((data, index) => printNews(data, index));
+
+  inquirer
+    .prompt([
+      {
+        type: 'number',
+        message: '想看哪个',
+        default: 0,
+        name: 'index',
+        validate: indexValidator,
+      },
+    ])
+    .then(async ({ index }) => {
+      await open(news[index].url);
+    });
+})();
