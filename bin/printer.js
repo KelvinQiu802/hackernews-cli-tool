@@ -7,9 +7,9 @@ export function clear() {
   process.stdout.write('\x1b[0f');
 }
 
-export function printNews({ title, type, score }) {
+export function printNews({ title, type, score, descendants }, index) {
   console.log(
-    `${chalk.bold(title)} ${chalk.italic.yellowBright(
+    `${index}. ${chalk.bold(title)} ${chalk.italic.blueBright(
       `[${type}]`
     )} ${emoji_fire}${score}`
   );
