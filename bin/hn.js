@@ -1,12 +1,12 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const storyCategorys = {
+export const storyCategorys = {
   top: 'topstories',
   new: 'newstories',
   best: 'beststories',
 };
 
-async function getTopN(n, category) {
+export async function getTopN(n, category) {
   const topNId = await getTopNId(n, category);
   const topItems = await Promise.all(
     topNId.map(async (id) => {
@@ -41,5 +41,3 @@ async function getItemById(id) {
   );
   return item;
 }
-
-module.exports = { getTopN, storyCategorys };

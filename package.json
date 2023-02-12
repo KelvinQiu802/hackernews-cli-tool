@@ -6,6 +6,7 @@
   "bin": {
     "hn": "/bin/index.js"
   },
+  "type": "module",
   "scripts": {},
   "keywords": [],
   "author": "",

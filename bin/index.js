@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
-const yargs = require('yargs');
-const { hideBin } = require('yargs/helpers');
-const { getTopN, storyCategorys } = require('./hn');
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import { getTopN, storyCategorys } from './hn.js';
 
 const argv = yargs(hideBin(process.argv))
   .option('category', {
