@@ -3,6 +3,7 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { getTopN, storyCategorys } from './hn.js';
+import { printNews, clear } from './printer.js';
 
 const argv = yargs(hideBin(process.argv))
   .option('category', {
@@ -28,6 +29,7 @@ async function getNews() {
   return await getTopN(argv.number, storyCategorys[argv.category]);
 }
 
+clear();
 getNews().then((data) => {
-  data.forEach((data) => console.log(data.title));
+  data.forEach((data) => printNews(data));
 });
