@@ -3,7 +3,7 @@
 ## Installation
 
 ```shell
-npm install -g hackernews-cli
+npm install -g hackernews-cli-tool
 ```
 
 ## Usage
