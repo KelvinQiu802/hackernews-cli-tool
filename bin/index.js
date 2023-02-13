@@ -4,7 +4,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { getTopN, storyCategorys } from './hn.js';
 import { printNews, clear } from './printer.js';
-import inquirer from 'inquirer';
+import { inquireOption, inquireIndex } from './prompt.js';
 import open from 'open';
 
 const argv = yargs(hideBin(process.argv))
@@ -31,32 +31,26 @@ async function getNews() {
   return await getTopN(argv.number, storyCategorys[argv.category]);
 }
 
-function indexValidator(index) {
-  if (index >= 0 && index <= argv.number - 1) {
-    return true;
-  } else {
-    throw new Error(`The index should between 0~${argv.number - 1}`);
-  }
-}
-
 clear();
 
 (async () => {
   const news = await getNews();
-
   news.forEach((data, index) => printNews(data, index));
 
-  inquirer
-    .prompt([
-      {
-        type: 'number',
-        message: '想看哪个',
-        default: 0,
-        name: 'index',
-        validate: indexValidator,
-      },
-    ])
-    .then(async ({ index }) => {
-      await open(news[index].url);
-    });
+  let start = 0;
+  let end = argv.number - 1;
+
+  while (true) {
+    const option = await inquireOption();
+    switch (option) {
+      case 'Exit':
+        return;
+      case 'Open':
+        const index = await inquireIndex(start, end);
+        open(news[index].url);
+        continue;
+      default:
+        throw new Error('Invalid Option');
+    }
+  }
 })();
