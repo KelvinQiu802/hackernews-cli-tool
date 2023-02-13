@@ -18,7 +18,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('number', {
     alias: 'n',
-    describe: 'The number of news (1-500)',
+    describe: 'The number of news for each page (1-500)',
     type: 'number',
     default: 10,
   })
@@ -57,7 +57,7 @@ async function getNewsByRnage(start, end) {
     switch (option) {
       case 'Exit':
         return;
-      case 'Open':
+      case 'Open in Browser':
         const index = await inquireIndex(start, end);
         open(getUrlByIndex(news, index - page * argv.number));
         continue;

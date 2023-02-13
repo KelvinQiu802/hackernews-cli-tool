@@ -20,11 +20,11 @@ export async function inquireOption(start, end) {
 function getOptionArr(start, end) {
   const perPage = end - start;
   if (end + perPage > 500) {
-    return ['Open', 'Prev Page', 'Exit'];
+    return ['Open in Browser', 'Prev Page', 'Exit'];
   } else if (start - perPage < 0) {
-    return ['Open', 'Next Page', 'Exit'];
+    return ['Open in Browser', 'Next Page', 'Exit'];
   } else {
-    return ['Open', 'Next Page', 'Prev Page', 'Exit'];
+    return ['Open in Browser', 'Next Page', 'Prev Page', 'Exit'];
   }
 }
 
