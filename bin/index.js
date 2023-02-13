@@ -3,7 +3,7 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { getTopByRange, storyCategorys } from './hn.js';
-import { printNews, clear } from './printer.js';
+import { printNews, clear, printLoading } from './printer.js';
 import { inquireOption, inquireIndex } from './prompt.js';
 import open from 'open';
 import getUrlByIndex from './helper.js';
@@ -44,7 +44,9 @@ async function getNewsByRnage(start, end) {
       clear();
       start = argv.number * page;
       end = argv.number * (page + 1);
+      printLoading();
       news = await getNewsByRnage(start, end);
+      clear();
       news.forEach((data, index) =>
         printNews(data, index + page * argv.number)
       );

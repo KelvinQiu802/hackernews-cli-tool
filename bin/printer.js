@@ -14,3 +14,8 @@ export function printNews({ title, type, score }, index) {
     )} ${emoji_fire}${score}`
   );
 }
+
+export function printLoading() {
+  console.log(chalk.underline('Requesting to Hacker News Server...\n'));
+  console.log(chalk.dim('\t> If get stuck, kill the program and try again.'));
+}
