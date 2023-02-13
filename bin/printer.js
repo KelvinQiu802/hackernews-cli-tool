@@ -7,7 +7,7 @@ export function clear() {
   process.stdout.write('\x1b[0f');
 }
 
-export function printNews({ title, type, score, descendants }, index) {
+export function printNews({ title, type, score }, index) {
   console.log(
     `${index}. ${chalk.bold(title)} ${chalk.italic.blueBright(
       `[${type}]`

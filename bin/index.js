@@ -2,7 +2,7 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { getTopN, storyCategorys } from './hn.js';
+import { getTopByRange, storyCategorys } from './hn.js';
 import { printNews, clear } from './printer.js';
 import { inquireOption, inquireIndex } from './prompt.js';
 import open from 'open';
@@ -28,27 +28,44 @@ const argv = yargs(hideBin(process.argv))
     } else return true;
   }).argv;
 
-async function getNews() {
-  return await getTopN(argv.number, storyCategorys[argv.category]);
+async function getNewsByRnage(start, end) {
+  return await getTopByRange(start, end, storyCategorys[argv.category]);
 }
 
-clear();
-
 (async () => {
-  const news = await getNews();
-  news.forEach((data, index) => printNews(data, index));
-
-  let start = 0;
-  let end = argv.number - 1;
+  let page = 0;
+  let start = argv.number * page;
+  let end = argv.number * (page + 1);
+  let render = true;
+  let news = [];
 
   while (true) {
-    const option = await inquireOption();
+    if (render) {
+      clear();
+      start = argv.number * page;
+      end = argv.number * (page + 1);
+      news = await getNewsByRnage(start, end);
+      news.forEach((data, index) =>
+        printNews(data, index + page * argv.number)
+      );
+      render = false;
+    }
+
+    const option = await inquireOption(start, end);
     switch (option) {
       case 'Exit':
         return;
       case 'Open':
         const index = await inquireIndex(start, end);
-        open(getUrlByIndex(news, index));
+        open(getUrlByIndex(news, index - page * argv.number));
+        continue;
+      case 'Next Page':
+        page += 1;
+        render = true;
+        continue;
+      case 'Prev Page':
+        page -= 1;
+        render = true;
         continue;
       default:
         throw new Error('Invalid Option');

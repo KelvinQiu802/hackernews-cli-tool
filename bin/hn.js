@@ -6,10 +6,10 @@ export const storyCategorys = {
   best: 'beststories',
 };
 
-export async function getTopN(n, category) {
-  const topNId = await getTopNId(n, category);
+export async function getTopByRange(start, end, category) {
+  const topId = await getTopIdByRange(start, end, category);
   const topItems = await Promise.all(
-    topNId.map(async (id) => {
+    topId.map(async (id) => {
       return await getItemById(id);
     })
   );
@@ -27,12 +27,9 @@ async function getTop500(category) {
   }
 }
 
-async function getTopNId(n, category) {
-  if (n < 0 || n > 500) {
-    throw new Error('Invalid number, N must grater than 0 and less than 500');
-  }
+async function getTopIdByRange(start, end, category) {
   const top500Id = await getTop500(category);
-  return top500Id.slice(0, n);
+  return top500Id.slice(start, end);
 }
 
 async function getItemById(id) {
