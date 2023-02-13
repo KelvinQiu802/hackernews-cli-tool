@@ -6,12 +6,12 @@
   "bin": {
     "hn": "/bin/index.js"
   },
-  "repository": {},
-  "type": "module",
-  "scripts": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/kelvinQiu802/hackernews-cli-tool"
   },
+  "type": "module",
+  "scripts": {},
   "keywords": [
     "HN",
     "Hacker News",
