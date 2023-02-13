@@ -1,6 +1,6 @@
 {
   "name": "hackernews-cli-tool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Hacker News CLI Tool",
   "main": "/bin/index.js",
   "bin": {
