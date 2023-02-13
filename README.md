@@ -1,4 +1,4 @@
-# Hacker News CLI
+# Hacker News CLI Tool
 
 ## Installation
 

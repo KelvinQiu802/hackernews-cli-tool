@@ -1,5 +1,5 @@
 {
-  "name": "hackernews-cli",
+  "name": "hackernews-cli-tool",
   "version": "1.0.0",
   "description": "A Hacker News CLI Tool",
   "main": "/bin/index.js",
@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "type": "git",
-    "url": "https://github.com/kelvinQiu802/hackernews-cli"
+    "url": "https://github.com/kelvinQiu802/hackernews-cli-tool"
   },
   "keywords": [
     "HN",
