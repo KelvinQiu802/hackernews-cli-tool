@@ -1,16 +1,27 @@
 {
   "name": "hackernews-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Hacker News CLI Tool",
   "main": "/bin/index.js",
   "bin": {
     "hn": "/bin/index.js"
   },
+  "repository": {},
   "type": "module",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "type": "git",
+    "url": "https://github.com/kelvinQiu802/hackernews-cli"
+  },
+  "keywords": [
+    "HN",
+    "Hacker News",
+    "CLI",
+    "Tool",
+    "node",
+    "CLI Tool"
+  ],
+  "author": "KelvinQiu802",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.3.2",
     "chalk": "^5.2.0",
