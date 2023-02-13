@@ -6,6 +6,7 @@ import { getTopN, storyCategorys } from './hn.js';
 import { printNews, clear } from './printer.js';
 import { inquireOption, inquireIndex } from './prompt.js';
 import open from 'open';
+import getUrlByIndex from './helper.js';
 
 const argv = yargs(hideBin(process.argv))
   .option('category', {
@@ -47,7 +48,7 @@ clear();
         return;
       case 'Open':
         const index = await inquireIndex(start, end);
-        open(news[index].url);
+        open(getUrlByIndex(news, index));
         continue;
       default:
         throw new Error('Invalid Option');
