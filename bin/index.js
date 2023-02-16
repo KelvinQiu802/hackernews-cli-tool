@@ -13,7 +13,7 @@ const argv = yargs(hideBin(process.argv))
     alias: 'c',
     describe: 'News category',
     type: 'string',
-    default: 'top',
+    default: 'best',
     choices: ['top', 'new', 'best'],
   })
   .option('number', {
